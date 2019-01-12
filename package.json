@@ -1,0 +1,24 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "A fake amazon app to use SQL and JavaScript",
+  "main": "bamazon.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cm718/Bamazon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cm718/Bamazon/issues"
+  },
+  "homepage": "https://github.com/cm718/Bamazon#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "inquirer": "^6.2.1",
+    "mysql": "^2.16.0"
+  }
+}
