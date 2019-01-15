@@ -13,21 +13,43 @@ var connection = mysql.createConnection({
 });
 
 // Begin the connection or throw an error
-connection.connect(function(err){
+connection.connect(function (err) {
     if (err) {
-    console.error('error connecting: ' + err.stack);
-    return;
-}
-    console.log("IS ANYTHING WORKING?")
-    // welcome();
+        console.error(`error connecting: ${err.stack}`);
+        return;
+    }
+    console.log("SERVER RUNNING");
+    display();
+    // prompts();
 });
 
+//Displays the table of data in the database
+function display() {
+    connection.query("SELECT * FROM products", function(err, results) {
+        if (err) throw err;
+        //display a table of the results of the sql statement
+       console.table(results);
+});
+prompts();
+}
+
 // Initial prompts for user
-function welcome() {
+function prompts() {
     console.log("Working");
-    inquirer.prompt({
-
-    }).then(function(answer){
-
+    inquirer.prompt([{
+            "type": "input",
+            "name": "id",
+            "message": "What is the ID of the item you would like to buy? \n \n"
+        },
+        {
+            "type": "input",
+            "name": "quantity",
+            "message": "How many would you like to buy?"
+        }]).then(function (answer) {
+            let id = answer.id;
+            console.log(id);
+            let quantity = answer.quantity;
+            console.log(quantity);
     })
 }
+
