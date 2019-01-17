@@ -35,11 +35,10 @@ prompts();
 
 // Initial prompts for user
 function prompts() {
-    console.log("Working");
     inquirer.prompt([{
             "type": "input",
             "name": "id",
-            "message": "What is the ID of the item you would like to buy? \n \n"
+            "message": "What is the ID of the item you would like to buy?"
         },
         {
             "type": "input",
@@ -50,6 +49,18 @@ function prompts() {
             console.log(id);
             let quantity = answer.quantity;
             console.log(quantity);
-    })
+            connection.query(`SELECT stock_quantity FROM products WHERE ${answer.id} = item_id`, function(err, results){
+                if (err) throw err;
+                console.log(`-------------------------`);
+                if(quantity > results[0].stock_quantity){
+                    console.log("Insufficient Quantity!");
+                    prompts();
+                } else {
+                    connection.query(`UPDATE products SET stock_quantity = results[0].stock_quantity - quantity WHERE ${answer.id} = item_id`)
+                    console.log(`Success! You bought ${answer.quantity}`)
+                }
+            })
+            prompts();
+    });
 }
 
