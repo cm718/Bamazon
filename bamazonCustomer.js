@@ -29,8 +29,8 @@ function display() {
         if (err) throw err;
         //display a table of the results of the sql statement
        console.table(results);
-});
-prompts();
+       prompts();
+    });
 }
 
 // Initial prompts for user
@@ -46,21 +46,22 @@ function prompts() {
             "message": "How many would you like to buy?"
         }]).then(function (answer) {
             let id = answer.id;
-            console.log(id);
-            let quantity = answer.quantity;
-            console.log(quantity);
-            connection.query(`SELECT stock_quantity FROM products WHERE ${answer.id} = item_id`, function(err, results){
+            let quantity = parseInt(answer.quantity);
+
+
+            connection.query(`SELECT stock_quantity, price FROM products WHERE ${answer.id} = item_id`, function(err, results){
                 if (err) throw err;
                 console.log(`-------------------------`);
                 if(quantity > results[0].stock_quantity){
                     console.log("Insufficient Quantity!");
                     prompts();
                 } else {
-                    connection.query(`UPDATE products SET stock_quantity = results[0].stock_quantity - quantity WHERE ${answer.id} = item_id`)
-                    console.log(`Success! You bought ${answer.quantity}`)
+                    let finalPrice = quantity * results[0].price;
+                    let newQuantity = results[0].stock_quantity - quantity;
+                    connection.query(`UPDATE products SET stock_quantity = ${newQuantity} WHERE item_id = ${answer.id}`)
+                    console.log(`Success! You bought ${answer.quantity}. Your total is ${finalPrice}`);
                 }
             })
-            prompts();
     });
 }
 
