@@ -59,7 +59,7 @@ function prompts() {
                     let finalPrice = quantity * results[0].price;
                     let newQuantity = results[0].stock_quantity - quantity;
                     connection.query(`UPDATE products SET stock_quantity = ${newQuantity} WHERE item_id = ${answer.id}`)
-                    console.log(`Success! You bought ${answer.quantity}. Your total is ${finalPrice}`);
+                    console.log(`Success! You bought ${answer.quantity}. Your total is $${finalPrice}.`);
                 }
             })
     });
