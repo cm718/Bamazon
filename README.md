@@ -12,10 +12,17 @@ You will be shown a table of products that are for sale. Each item has an Item_I
 
 Then bamazon will ask how many you would like to purchase. I then checks the quantity you would like to buy against the stock_quantity in the table. If the quantity requested is greater than the stock_quantity available it will return "Insufficient Quantity!" and will ask prompts again.
 
-If the requested quantity is less than or equal to the amount available it will return with "Success! You bought (quantity). Your total is (final price).
+If the requested quantity is less than or equal to the amount available it will return with "Success! You bought (quantity). Your total is (final price). 
+
+You will also notice that there is one less hamburger on the second row in stock_quantity showing that the quantity will update after each successful purchase.
 > See below for a screenshot of the final results
 
 ![bamazon2](/images/bamazon2.png)
 
 ## To set up Bamazon in on your device
-You will need to require in the mysql and inquirer dependencies
+You will need to install the mysql and inquirer dependencies.
+```javascript
+npm install mysql inquirer
+```
+## Also
+> If you have further questions about this or my other projects please send me an email at cmmclaughlin7@gmail.com
