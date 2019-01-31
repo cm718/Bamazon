@@ -19,7 +19,7 @@ You will also notice that there is one less hamburger on the second row in stock
 
 ![bamazon2](/images/bamazon2.png)
 
-## To set up Bamazon in on your device
+## To set up Bamazon on your device
 You will need to install the mysql and inquirer dependencies.
 ```javascript
 npm install mysql inquirer
